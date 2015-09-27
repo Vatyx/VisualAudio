@@ -1,13 +1,14 @@
 <html>
   <head>
     <title>icroblog</title>
-    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script src="../static/script.js"></script>
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
   </head>
   <body>
-      <input type="text" name="Song Name" id="inputField">
-      <br>
-      <button type="button" onclick="freesoundRedirect()">Click Me!</button>
+    <div class="container">
+      <h1>VA</h1>
+      <a href="https://accounts.spotify.com/authorize/?client_id=9344d5a91349489488cc51637d912e21&response_type=code&redirect_uri=http%3A%2F%2Flocalhost:8080/woo">Login to Spotify</a>
+    </div>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="../static/script.js"></script>
   </body>
 </html>
