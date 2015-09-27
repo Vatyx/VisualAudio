@@ -13,7 +13,10 @@ function freesoundRedirect()
 
 function getList()
 {
-    console.log("In GetList");
-    value = $(".inputfield");
-    console.log(value);
+    console.log("In GetListaaayy");
+    var value = $("#inputField").val();
+    $.get( "/gettracks", {'trackname': 'this'}, function(data)
+    {
+        console.log(data);
+    });
 }

@@ -1,5 +1,6 @@
 from flask import render_template
 from flask import request
+from flask import jsonify
 import json
 import requests
 from app import app
@@ -19,41 +20,56 @@ def woo():
     code = request.args.get('code')
     req = requests.post("https://accounts.spotify.com/api/token", data={'grant_type': 'authorization_code', 'code': code, 'redirect_uri': 'https://flasktest-vatyx.c9.io/woo', 'client_id': '9344d5a91349489488cc51637d912e21', 'client_secret': '5cb043cf9fc546bebc91978ec8a95bc6'})
     res = req.json()
+    global access_token
     access_token = res['access_token']
     print("This is the access_token " + access_token);
     
-    payload1 = {'Authorization': 'Bearer ' +access_token}
-    payload2 = {'q': 'px3'}
-    req = requests.get("https://api.spotify.com/v1/search?q=px3&type=track", headers=payload1)
+    # payload1 = {'Authorization': 'Bearer ' +access_token}
+    # payload2 = {'q': 'px3'}
+    # req = requests.get("https://api.spotify.com/v1/search?q=px3&type=track", headers=payload1)
     
-    reqJson = req.json()
+    # reqJson = req.json()
     
-    for thing in reqJson['tracks']['items']:
-        print(thing['name'])
+    # for thing in reqJson['tracks']['items']:
+    #     print(thing['name'])
         
-    trackId = reqJson['tracks']['items'][0]['id']
+    # trackId = reqJson['tracks']['items'][0]['id']
     
-    req = requests.get("https://api.spotify.com/v1/tracks/" + trackId)
-    reqJson = req.json()
+    # req = requests.get("https://api.spotify.com/v1/tracks/" + trackId)
+    # reqJson = req.json()
     
-    print(reqJson['preview_url'])
+    # print(reqJson['preview_url'])
     
     print("About to return")
-    return render_template('test.html', link=reqJson['preview_url'])
+    return render_template('test.html')
 
 @app.route('/gettracks', methods=['GET'])
-def listofTracks(query):
-    payload1 = {'Authorization': 'Bearer ' +access_token}
-    req = requests.get("https://api.spotify.com/v1/search?q=" + query + "&type=track", headers=payload1)
-    currentList = req.json()
+def gettracks():
+    try:
+        print("something happening")
+        query = request.args.get('trackname')
+        payload1 = {'Authorization': 'Bearer ' + access_token}
+        print(access_token)
+        req = requests.get("https://api.spotify.com/v1/search?q=" + query + "&type=track", headers=payload1)
+        global currentList
+        currentList = req.json()
+        print(currentList)
+    except Exception:
+        print(Exception)
+    print("Inside the get functions");
     
-    return currentList['tracks']
+    return jsonify(currentList['tracks'])
+
+@app.route('/previewtrack', methods=['GET'])
+def previewtrack():
+    query = request.args.get('id')
     
-def previewTrack(track_id):
     for thing in currentList['tracks']['items']:
-        if track_id == thing['id']:
-            return thing['preview_url']
-    
+        if query == thing['id']:
+            req = requests.get("https://api.spotify.com/v1/tracks/" + thing['id'])
+            reqJson = req.json()
+            return reqJson['preview_url']
+            
 
 #ab = requests.post("https://www.freesound.org/apiv2/oauth2/access_token/", data={'client_id': '5dc0cf6f3d88bf59f954', 'client_secret': "482b63ff00aef82733c1e1049a06837dbe558aee", 'grant_type': 'authorization_code', 'code': code})
 
