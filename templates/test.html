@@ -1,15 +1,29 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-    <head>
-        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-        <script src="../static/script.js"></script>
-    </head>
-    
-    <body>
-        <h1>Hi there {{link}}</h1>
-        
-        <input type="text" name="Song Name" id="inputField">
-        <br>
-        <button type="button" onclick="getList()">Click Me!</button>
-    </body>
+  <head>
+    <title>icroblog</title>
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <div class="container">
+      <h1>VA</h1>
+      <h2>Your songs</h2>
+      <input type="text" placeholder="Search..." />
+      <ul>
+        <li>The Hills</li>
+        <li>The Hills</li>
+        <li>The Hills</li>
+        <li>The Hills</li>
+        <li>The Hills</li>
+        <li>The Hills</li>
+        <li>The Hills</li>
+        <li>The Hills</li>
+        <li>The Hills</li>
+        <li>The Hills</li>
+        <li>The Hills</li>
+      </ul>
+    </div>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="../static/script.js"></script>
+  </body>
 </html>
