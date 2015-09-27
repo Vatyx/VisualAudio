@@ -1,8 +1,5 @@
-from flask import render_template
-from flask import request
-from flask import jsonify
-import json
-import requests
+from flask import render_template, request, redirect, url_for, jsonify
+import requests, json
 from app import app
 
 code = None
@@ -69,7 +66,7 @@ def previewtrack():
         if query == thing['id']:
             req = requests.get("https://api.spotify.com/v1/tracks/" + thing['id'])
             reqJson = req.json()
-            return reqJson['preview_url']
+            return render_template('viz.html', message = reqJson['preview_url'])
             
 
 #ab = requests.post("https://www.freesound.org/apiv2/oauth2/access_token/", data={'client_id': '5dc0cf6f3d88bf59f954', 'client_secret': "482b63ff00aef82733c1e1049a06837dbe558aee", 'grant_type': 'authorization_code', 'code': code})

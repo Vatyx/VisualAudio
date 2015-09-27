@@ -28,9 +28,24 @@ function populate() {
   if (!val) return;
   $.get('/gettracks', {trackname: val}, function(data) {
     var items = data.items;
+    console.log(items[5]);
     items.slice(0, 10).map(function(item) {
       var artist = item.artists.map(function(a) { return a.name; }).join(', ');
-      $list.append($('<li><a href="/previewtrack?id=' + item.id + '">' + item.name + ' - ' + artist + '</a></li>'));
+      var k = item.name.indexOf("(");
+      var name = k > 0 ? item.name.substring(0, item.name.indexOf("(")) : item.name;
+      var explicit = item.explicit ? "EXPLICIT" : "";
+
+      $list.append($('<div class="items">' +
+        '<a href="/previewtrack?id=' + item.id + '">' + 
+        '<img src="' + item.album.images[0].url + '"/>' +
+        '<div class="info">' +
+          '<h2 class="title"> ' + name + ' - ' + artist + ' </h2>' +
+          '<p class="explicit">' + explicit + '</p>' +
+          '<p class="pop">Popularity:' + item.popularity + '</p>' +
+        '</div>' +
+        '</a>' +
+        '</div>'
+        ));
     });
   });
 }

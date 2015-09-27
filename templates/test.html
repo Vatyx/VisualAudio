@@ -1,16 +1,14 @@
 <!doctype html>
 <html>
   <head>
-    <title>icroblog</title>
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+    <title>VA</title>
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='global.css') }}">
   </head>
   <body>
     <div class="container">
-      <h1>VA</h1>
-      <h2>Your songs</h2>
-      <input type="text" placeholder="Search..." id="search" />
-      <ul id="listItem">
-      </ul>
+      <h1 class="hero-title" style="position: fixed"><a href="/">VA</a></h1>
+      <input type="text" placeholder="Search your favourite songs" id="search" style="position: fixed; top: 250px;"/>
+      <div id="listItem"></div>
     </div>
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>

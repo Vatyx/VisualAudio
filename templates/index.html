@@ -1,15 +1,22 @@
 <!doctype html>
 <html>
   <head>
-    <title>icroblog</title>
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+    <title>VA</title>
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='global.css') }}">
   </head>
   <body>
     <div class="container">
-      <h1>VA</h1>
-      <a href="https://accounts.spotify.com/authorize/?client_id=9344d5a91349489488cc51637d912e21&response_type=code&redirect_uri=http%3A%2F%2Flocalhost:8080/woo">Login to Spotify</a>
+      <h1 class="hero-title"><a href="/">VA</a></h1>
+      <img src="static/person.jpg" style="position: absolute;
+    right: 0;
+    top: 0;
+    height: 700px;"/>
+      <a href="https://accounts.spotify.com/authorize/?client_id=9344d5a91349489488cc51637d912e21&response_type=code&redirect_uri=http%3A%2F%2Flocalhost:8080/woo"><div id="start">start</div></a>
+      <p style="    margin-left: 125px;
+    color: #CACAB1;
+    margin-top: 20px;">Bring music to life</p>
+
+
     </div>
-    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script src="../static/script.js"></script>
   </body>
 </html>
