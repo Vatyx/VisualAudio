@@ -30,7 +30,7 @@ function populate() {
     var items = data.items;
     items.slice(0, 10).map(function(item) {
       var artist = item.artists.map(function(a) { return a.name; }).join(', ');
-      $list.append($('<li>' + item.name + ' - ' + artist + '</li>'));
+      $list.append($('<li><a href="/previewtrack?id=' + item.id + '">' + item.name + ' - ' + artist + '</a></li>'));
     });
   });
 }
