@@ -18,7 +18,7 @@ def index():
 @app.route('/woo', methods=['GET'])
 def woo():
     code = request.args.get('code')
-    req = requests.post("https://accounts.spotify.com/api/token", data={'grant_type': 'authorization_code', 'code': code, 'redirect_uri': 'https://flasktest-vatyx.c9.io/woo', 'client_id': '9344d5a91349489488cc51637d912e21', 'client_secret': '5cb043cf9fc546bebc91978ec8a95bc6'})
+    req = requests.post("https://accounts.spotify.com/api/token", data={'grant_type': 'authorization_code', 'code': code, 'redirect_uri': 'http://localhost:8080/woo', 'client_id': '9344d5a91349489488cc51637d912e21', 'client_secret': '5cb043cf9fc546bebc91978ec8a95bc6'})
     res = req.json()
     global access_token
     access_token = res['access_token']
